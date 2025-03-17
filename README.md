@@ -1,13 +1,21 @@
 # stats220
 
-This is my repo for STATS 220!
+## This is my repo for STATS 220!
 
-Little about me:
+**Little about me:**
 
-I'm taking a degree in Bachelor of Science, majoring in psychology and statistics. 
-I'm taking Stats 220 is because it is a fun course for learning R code.
-I am intersted in learning about ways i can make readable documents
+* I'm taking a degree in Bachelor of Science, majoring in:
+1. *Psychology*
+2. *Statistics*😆!!!
 
-A meme that captures my how I currently feel about my university studies is ![](https://images.app.goo.gl/n2zVZU149MoY5qbv9)
+* I am intersted in learning about ways I can make **readable documents**
+
+* I'm taking **Stats 220** is because it is a fun course for learning R code, also because the lectures are ***Cat themed!!!***
+![](https://media1.tenor.com/m/x1hCpiu-nUAAAAAC/duongcam1621-cat.gif)
+
+
+***[A link to a meme that captures my how I currently feel about my university studies](https://nz.pinterest.com/pin/20-funny-university-memes-for-students--225109681364782675/)***
+
+
 
 
