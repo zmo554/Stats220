@@ -1,0 +1,110 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+
+```
+
+```{css}
+body {
+  font-family: "Monaco", Monospace;
+  font-weight: normal;
+  font-size: 15pt;
+  
+}
+
+h2 {
+  font-weight: bold;
+  font-size : 30pt;
+  
+}
+```
+
+## What's going on with my sleep during Uni?
+
+> **Import data:**
+
+```{r}
+# Read the CSV file
+library(tidyverse)
+logged_data <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTIE7VZPkZVKd8yY4K-8vxQhQVAVbyOA_pOH-zQqbe_HkOSwUQ_gaCpa-tKbUFYltaltpGOXCAaBltd/pub?gid=1735036210&single=true&output=csv")
+
+# Rename variables
+
+latest_data <- logged_data %>% 
+  rename(Day = 2,
+         Bedtime = 3,
+         Duration = 4, 
+         Energy_rating = 5, 
+         Uni_Efficiency = 6,
+         Caffein_intake = 7,
+         Unsatistifaction_Cause = 8,
+         Sleep_Satisfaction = 9,
+         Anything_negativly_impacted = 11) 
+```
+
+
+
+> **Mapping out the change in sleep duration during the semester**
+
+```{r}
+latest_data %>% 
+  ggplot() +
+    geom_bar(aes(x = Duration, fill = Week.of.the.sememeter)) +
+  labs(title = "Change in amount of sleep across the semester",
+       x = "Duration of sleep (hours)",
+       y = "Week")
+```
+From the chart, the Week 1 and week 2 had around 8 to 10 hours of sleep, wfrom week 3, we can see that sleep duration become less. 
+
+
+
+> **Satisfaction changes as semester progresses**
+
+```{r}
+ggplot(data = latest_data) +
+  geom_bar(aes(x = Week.of.the.sememeter, fill = Sleep_Satisfaction)) +
+  labs(title = "Change in sleep satisfaction across the semester",
+       x = "Week",
+       y = "sleep satisfaction rating")
+
+```
+As we can see from the car chart, as semester progresses, we become more uncertain about the quality and time of our sleep. Which maybe be due to stress or workload. 
+
+
+
+> **Summary value of Sleep duration**
+
+```{r}
+paste("The highest amount of sleep I had throughout the 4 weeks and 5 days of logging was",
+      max(latest_data$Duration),
+      "Hours.",
+      "The lowest amount of sleep I had throughout the 4 weeks and 5 days of logging was",
+      min(latest_data$Duration),
+      "hours.", collapse = "")
+paste("The mean amount spent in Cafe in the 4 weeks and 3 days of logging is",
+      mean(latest_data$Duration),
+      "hours.", collapse = "")
+```
+
+-   **Line plot showing changes weekly amount of sleep Averages**
+
+```{r}
+Avg_sleep_per_week <- latest_data %>%
+  group_by(Week.of.the.sememeter) %>%
+  summarise(avg_sleep = mean(Duration))
+
+ggplot(Avg_sleep_per_week, aes(x = Week.of.the.sememeter, y = avg_sleep, group = 1)) +
+  geom_line(color = "darkgreen") +
+  geom_point(color = "red") +
+  labs(title = "Average Sleep Duration Over the Weeks",
+       x = "Week",
+       y = "Average Sleep Duration (hours)") 
+```
+With this plot, it allows us to see overall change in sleeping habbits over the weeks of the semester. 
+
+
+
